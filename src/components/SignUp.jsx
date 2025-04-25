@@ -20,7 +20,7 @@ export default function SignUp({setIsAuth}) {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:3000/signup', signupData)
+        Axios.post('https://ticserver-1.onrender.com/signup', signupData)
         .then(response => {
             console.log('Signup successful:', response.data);
             const { userData, userToken } = response.data;

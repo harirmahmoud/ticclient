@@ -9,6 +9,7 @@ export default function JoinGame({setIsAuth}) {
   const handleChange = (e) => {
     setRivalUsername(e.target.value);
   }
+  const cookies = new Cookies();
   const { client } = useChatContext();
   const [channel, setChannel] = React.useState(null);
   const handleSubmit = (e) => {
@@ -34,12 +35,12 @@ export default function JoinGame({setIsAuth}) {
     await client.disconnectUser();
     setChannel(null);
     setIsAuth(false);
-    Cookies.remove('token');
-    Cookies.remove('userId');
-    Cookies.remove('username');
-    Cookies.remove('email');
-    Cookies.remove('image');
-    Cookies.remove('hashedPassword');
+    cookies.remove('token');
+    cookies.remove('userId');
+    cookies.remove('username');
+    cookies.remove('email');
+    cookies.remove('image');
+    cookies.remove('hashedPassword');
     navigate('/');
 
   }

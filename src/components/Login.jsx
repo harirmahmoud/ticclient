@@ -19,7 +19,7 @@ export default function Login({setIsAuth}) {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:3000/login', loginData)
+        Axios.post('https://ticserver-1.onrender.com/login', loginData)
             .then((response) => {
                 console.log(response.data);
                 const { user, token } = response.data;
