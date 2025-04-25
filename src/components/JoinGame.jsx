@@ -3,6 +3,7 @@ import { useChatContext, Channel } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 import Game from './Game';
 import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'mui-sonner'
 
 export default function JoinGame({setIsAuth}) {
   const [rivalUsername, setRivalUsername] = React.useState('');
@@ -41,6 +42,7 @@ export default function JoinGame({setIsAuth}) {
     cookies.remove('email');
     cookies.remove('image');
     cookies.remove('hashedPassword');
+    toast.success('Logged out successfully!');
     navigate('/');
 
   }
@@ -49,6 +51,8 @@ export default function JoinGame({setIsAuth}) {
    {channel ? (
     <Channel channel={channel}><Game rivalUsername={rivalUsername} handlelogout={handlelogout} channel={channel}/></Channel>
    ) :(<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
+    <Toaster position="top-center" richColors theme="dark" closeButton={false} />
+      <h1 className='logo'>Welcome to HWorld</h1>
       <h1>Join Game</h1>
       <form>
         <div>

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Axios from 'axios'
 import Cookies from 'universal-cookie'
 import './login.css'
+import { Toaster, toast } from 'mui-sonner'
 
 
 export default function Login({setIsAuth}) {
@@ -31,6 +32,7 @@ export default function Login({setIsAuth}) {
                 cookies.set("image",user.image);
                 cookies.set("hashedPassword",user.hashedPassword);
                 setIsAuth(true);
+                toast.success('Logged in successfully!');
             })
             .catch((error) => {
                 
@@ -43,7 +45,7 @@ export default function Login({setIsAuth}) {
   return (
     <div className='login' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
         <h1 className='logo'>Welcome to HWorld</h1>
-        
+        <Toaster position="top-center" richColors theme="dark" closeButton={false} />
         <h1>Sign In</h1>
         <form>
             <div>
