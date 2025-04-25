@@ -14,7 +14,7 @@ export default function Game({rivalUsername,channel,handlelogout}) {
     );
     
     if(!player){
-        return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}><button className='logout' onClick={handlelogout}>Log Out</button><p>Waiting for another player...</p></div>
+        return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}><button className='logoutt' onClick={handlelogout}>Log Out</button><p>Waiting for another player...</p></div>
       
     }
    
