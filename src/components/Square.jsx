@@ -15,7 +15,7 @@ export default function Square({chooseSquare,val}) {
         justifyContent:"center",
         alignItems:"center",
         }}>
-        {val}
+        <h1 style={val==='X' ?{color:"blue"}:{color:"red"}}>{val}</h1>
         </div>
   )
 }

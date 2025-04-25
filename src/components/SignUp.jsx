@@ -41,19 +41,20 @@ export default function SignUp({setIsAuth}) {
         console.log('Signup data:', signupData);
     }
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '90vh'}}>    
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>    
+        <h1 className='logo'>Welcome to HWorld</h1>
         <h1>Sign Up</h1>
         <form>
             <div>
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="username">Username</label>
             <input onChange={handleChange} type="text" id="username" name="username" required />
             </div>
             <div>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email</label>
             <input onChange={handleChange} type="email" id="email" name="email" required />
             </div>
             <div>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Password</label>
             <input onChange={handleChange} type="password" id="password" name="password" required />
             </div>
             <button onClick={handleSubmit} type="submit">Sign Up</button>

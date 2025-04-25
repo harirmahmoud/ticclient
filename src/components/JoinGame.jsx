@@ -47,8 +47,8 @@ export default function JoinGame({setIsAuth}) {
   return (
     <>
    {channel ? (
-    <Channel channel={channel}><Game channel={channel}/><button onClick={handlelogout}>Log Out</button></Channel>
-   ) :(<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '90vh'}}>
+    <Channel channel={channel}><Game rivalUsername={rivalUsername} handlelogout={handlelogout} channel={channel}/></Channel>
+   ) :(<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
       <h1>Join Game</h1>
       <form>
         <div>

@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Axios from 'axios'
 import Cookies from 'universal-cookie'
+import './login.css'
 
 
 export default function Login({setIsAuth}) {
@@ -40,15 +41,17 @@ export default function Login({setIsAuth}) {
         console.log('Login data:', loginData);
     }
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '90vh'}}>
-        <h1>LogIn</h1>
+    <div className='login' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
+        <h1 className='logo'>Welcome to HWorld</h1>
+        
+        <h1>Sign In</h1>
         <form>
             <div>
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="username">Username</label>
             <input onChange={handleChange} type="text" id="username" name="username" required />
             </div>
             <div>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Password</label>
             <input onChange={handleChange} type="password" id="password" name="password" required />
             </div>
             <button onClick={handleSubmit} type="submit">Log In</button>

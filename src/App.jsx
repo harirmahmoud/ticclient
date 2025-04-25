@@ -44,8 +44,7 @@ React.useEffect(() => {
 
        
         </Routes>
-        <footer style={{position: 'fixed', bottom: 0, left: 0, right: 0, textAlign: 'center', padding: '10px', backgroundColor: '#f1f1f1'}}/>
-          <p>© 2025 Tic Tac Toe Game. All rights reserved.</p>
+    
     </>
   )
 }

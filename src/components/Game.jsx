@@ -1,7 +1,7 @@
 import React from 'react'
 import Board from './Board'
 
-export default function Game({channel}) {
+export default function Game({rivalUsername,channel,handlelogout}) {
     const [player, setPlayer] = React.useState(
         channel.state.watcher_count === 2
     );
@@ -12,15 +12,16 @@ export default function Game({channel}) {
       
     }
     );
+    
     if(!player){
-        return <div>Waiting for another player...</div>
+        return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}><button className='logout' onClick={handlelogout}>Log Out</button><p>Waiting for another player...</p></div>
       
     }
    
   return (
-    <div><h1>Game</h1>
-        <Board result={result} setResult={setResult} />
-        
+    <div> <button className='logout' onClick={handlelogout}>Log Out</button>
+        <Board rivalUsername={rivalUsername} result={result} setResult={setResult} />
+       
         
     </div>
   )

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Square from './Square'
 import {useChannelStateContext,useChatContext} from 'stream-chat-react'
 import { Patterns } from '../WinningPatterns'
+import { Toaster, toast } from 'mui-sonner'
 
 
-export default function Board({result,setResult}) {
+export default function Board({result,setResult,rivalUsername}) {
   const getCookie = (name) => {
 		const value = `; ${document.cookie}`;
 		const parts = value.split(`; ${name}=`);
@@ -46,14 +47,27 @@ if(idx===index){
   )
   }
   }
-
+  const [points,setPoints]=useState({
+    you:0,
+    rival:0
+  })
   const checkWinner=()=>{
     Patterns.forEach((pattern)=>{
       const [a,b,c]=pattern
       if(board[a] && board[a]===board[b] && board[a]===board[c]){
         setResult({winner:board[a],state:"Won"})
-     
-        alert(`Player ${board[a]} wins`)
+        if(board[a]===player){
+         
+          toast.success(`you win !`)
+          setPoints({...points,you:points.you+1})
+          setTurn(player)
+        }
+        else{
+          toast.error(`${rivalUsername} win !`)
+          setPoints({...points,rival:points.rival+1})
+          setTurn(player==="X"?"O":"X")
+        }
+        
         setBoard(["","","",
         "","","",
         "","","",])
@@ -70,13 +84,16 @@ if(idx===index){
     })
     if(filled){
       setResult({winner:null,state:"Tie"})
-      alert("Game is Tie")
+      toast("Game is Tie")
+      
+      
       setBoard(["","","",
         "","","",
         "","","",])
     }
   }
-
+  
+ 
   channel.on(async(event)=>{
     if(event.type=="game-move" && event.user.id!==client.userID){
       
@@ -93,9 +110,11 @@ if(idx===index){
   }
   )
   return (
-    <div>
-        <h1>Board</h1>
-        <h1>WellCome {getCookie("username")}</h1>
+    <div style={{}}>
+      <Toaster position='top-center' />
+        
+        <h1 style={{display:"flex",justifyContent:"center"}}>{getCookie("username")} is {player}</h1>
+        <h1 style={{display:"flex",justifyContent:"center"}}>{turn===player ? getCookie("username"):rivalUsername}'s turn now </h1>
        <div>
         <div style={{display:"flex",justifyContent:"center"}} className="row">
            <Square chooseSquare={()=>{handleSquareClick(0)}} val={board[0]} />
@@ -113,6 +132,7 @@ if(idx===index){
            <Square chooseSquare={()=>{handleSquareClick(7)}} val={board[7]}/>
            <Square chooseSquare={()=>{handleSquareClick(8)}} val={board[8]}/>
         </div>
+        <h1 style={{display:"flex",justifyContent:"center"}}>{getCookie("username")+" "+ points.you+" - "+points.rival+" "+rivalUsername}   </h1>
     </div>
   )
 }
