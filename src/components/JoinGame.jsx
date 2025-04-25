@@ -15,11 +15,12 @@ export default function JoinGame({setIsAuth}) {
   const [channel, setChannel] = React.useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Rival Username:', rivalUsername);
+
     const createChannel=async () => {
       const res=await client.queryUsers({name:{$eq: rivalUsername}});
       if(res.users.length===0){
-        alert('User not found');
+        toast.error('User not found');
+        setRivalUsername('');
         return;
       }
       const newchannel=await client.channel('messaging',{
@@ -27,7 +28,7 @@ export default function JoinGame({setIsAuth}) {
       });
       await newchannel.watch();
       setChannel(newchannel);
-    console.log('Joining game with rival:', rivalUsername);
+    
   }
     createChannel();
   }
@@ -57,7 +58,7 @@ export default function JoinGame({setIsAuth}) {
       <form>
         <div>
           <label htmlFor="gameId">Game ID:</label>
-          <input onChange={handleChange} placeholder='Username of rival ...' type="text" id="gameId" name="gameId" required />
+          <input onChange={handleChange} value={rivalUsername}  placeholder='Username of rival ...' type="text" id="gameId" name="gameId" required />
         </div>
         <button onClick={handleSubmit} type="submit">Join Game</button>
         <button onClick={handlelogout}>Log Out</button>
